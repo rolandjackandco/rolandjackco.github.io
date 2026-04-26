@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roland Jack & Co. — Smart Content. Real Results.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B1C35;
+    --navy-light: #112240;
+    --gold: #C9A84C;
+    --gold-light: #E2C87A;
+    --cream: #F5F1E8;
+    --white: #FDFCFA;
+    --grey: #8A9BB0;
+    --text: #1A2B42;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 24px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(11,28,53,0.97);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold) !important;
+    padding: 10px 24px;
+    font-size: 11px !important;
+    letter-spacing: 3px !important;
+    cursor: pointer;
+    transition: all 0.3s !important;
+  }
+
+  .nav-cta:hover {
+    background: var(--gold) !important;
+    color: var(--navy) !important;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 60px 80px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.04) 0%, transparent 50%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(201,168,76,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content {
+    position: relative;
+    text-align: center;
+    max-width: 900px;
+    animation: fadeUp 1s ease forwards;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 7vw, 88px);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 16px 40px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    padding: 16px 40px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.3);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .hero-divider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: var(--white);
+    clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  }
+
+  /* STATS */
+  .stats {
+    background: var(--cream);
+    padding: 80px 60px;
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    border-bottom: 1px solid rgba(11,28,53,0.1);
+  }
+
+  .stat {
+    text-align: center;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--navy);
+    display: block;
+  }
+
+  .stat-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-top: 8px;
+    display: block;
+  }
+
+  .stat-divider {
+    width: 1px;
+    background: rgba(11,28,53,0.15);
+    align-self: stretch;
+  }
+
+  /* SECTION STYLES */
+  section { padding: 120px 60px; }
+
+  .section-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.15;
+    margin-bottom: 24px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .section-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--grey);
+    line-height: 1.7;
+    max-width: 560px;
+  }
+
+  /* SERVICES */
+  .services {
+    background: var(--white);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .services-header {
+    margin-bottom: 80px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(11,28,53,0.08);
+  }
+
+  .service-card {
+    background: var(--white);
+    padding: 56px 44px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 0;
+    background: var(--gold);
+    transition: height 0.4s;
+  }
+
+  .service-card:hover::before { height: 100%; }
+
+  .service-card:hover { background: var(--navy); }
+
+  .service-card:hover .service-title { color: var(--white); }
+  .service-card:hover .service-desc { color: rgba(255,255,255,0.5); }
+  .service-card:hover .service-number { color: rgba(201,168,76,0.3); }
+
+  .service-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 900;
+    color: rgba(11,28,53,0.06);
+    line-height: 1;
+    margin-bottom: 24px;
+    transition: color 0.4s;
+  }
+
+  .service-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 16px;
+    transition: color 0.4s;
+  }
+
+  .service-desc {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--grey);
+    line-height: 1.8;
+    transition: color 0.4s;
+  }
+
+  /* PACKAGES */
+  .packages {
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .packages::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 70%);
+  }
+
+  .packages-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .packages-header {
+    margin-bottom: 80px;
+  }
+
+  .packages-header .section-title { color: var(--white); }
+
+  .packages-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .package-card {
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 56px 40px;
+    position: relative;
+    transition: all 0.4s;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .package-card.featured {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.05);
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 20px;
+  }
+
+  .package-name {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .package-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .package-price span {
+    font-size: 24px;
+    font-weight: 400;
+    vertical-align: top;
+    margin-top: 12px;
+    display: inline-block;
+  }
+
+  .package-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+
+  .package-divider {
+    height: 1px;
+    background: rgba(201,168,76,0.2);
+    margin-bottom: 32px;
+  }
+
+  .package-features {
+    list-style: none;
+    margin-bottom: 40px;
+  }
+
+  .package-features li {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .package-features li::before {
+    content: '—';
+    color: var(--gold);
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+
+  .btn-package {
+    display: block;
+    text-align: center;
+    padding: 14px;
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+    transition: all 0.3s;
+  }
+
+  .btn-package:hover, .package-card.featured .btn-package {
+    background: var(--gold);
+    color: var(--navy);
+    border-color: var(--gold);
+  }
+
+  /* PROCESS */
+  .process {
+    background: var(--cream);
+    max-width: 100%;
+  }
+
+  .process-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .process-header { margin-bottom: 80px; }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 32px;
+    left: 10%;
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .process-step {
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+  }
+
+  .step-number {
+    width: 64px;
+    height: 64px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 32px;
+    background: var(--cream);
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-number span {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+
+  .step-desc {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--grey);
+    line-height: 1.7;
+  }
+
+  /* ABOUT */
+  .about {
+    background: var(--white);
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-box {
+    background: var(--navy);
+    padding: 80px 60px;
+    position: relative;
+  }
+
+  .about-box::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--gold);
+    z-index: -1;
+  }
+
+  .about-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .about-quote-author {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .about-text p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--grey);
+    line-height: 1.9;
+    margin-bottom: 24px;
+  }
+
+  .about-list {
+    list-style: none;
+    margin-top: 40px;
+  }
+
+  .about-list li {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text);
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(11,28,53,0.08);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .about-list li::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: var(--navy);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, rgba(201,168,76,0.1) 0%, transparent 70%);
+  }
+
+  .cta-inner {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  .cta-title em { color: var(--gold); font-style: italic; }
+
+  .cta-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 48px;
+    line-height: 1.7;
+  }
+
+  /* CONTACT */
+  .contact {
+    background: var(--cream);
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 100px;
+    align-items: start;
+  }
+
+  .contact-info .section-title { margin-bottom: 32px; }
+
+  .contact-details { margin-top: 48px; }
+
+  .contact-item {
+    margin-bottom: 32px;
+  }
+
+  .contact-item-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .contact-item-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--navy);
+  }
+
+  .contact-form {
+    background: var(--white);
+    padding: 64px 56px;
+    box-shadow: 0 4px 40px rgba(11,28,53,0.08);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .form-group {
+    margin-bottom: 24px;
+  }
+
+  .form-group label {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--grey);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    padding: 14px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(11,28,53,0.15);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--navy);
+    outline: none;
+    transition: border-color 0.3s;
+    appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-bottom-color: var(--gold);
+  }
+
+  .form-group textarea { resize: none; height: 100px; }
+
+  .form-submit {
+    width: 100%;
+    padding: 18px;
+    background: var(--navy);
+    color: var(--white);
+    border: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 16px;
+  }
+
+  .form-submit:hover { background: var(--gold); color: var(--navy); }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    padding: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .footer-logo span { color: var(--gold); }
+
+  .footer-tagline {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-top: 6px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-copy {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* FULL SECTIONS WRAPPER */
+  .section-wrapper { padding: 120px 60px; }
+  .section-wrapper.dark { background: var(--navy); }
+  .section-wrapper.cream { background: var(--cream); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Roland Jack <span>&</span> Co.</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Brisbane, Australia · Est. 2024</p>
+    <h1 class="hero-title">Smart Content.<br><em>Real Results.</em></h1>
+    <p class="hero-sub">Professional content writing for businesses that want to grow online — blogs, social media, emails and more.</p>
+    <div class="hero-buttons">
+      <a href="#packages" class="btn-primary">View Packages</a>
+      <a href="#contact" class="btn-secondary">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <span class="stat-number">24hr</span>
+    <span class="stat-label">Turnaround</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat">
+    <span class="stat-number">100%</span>
+    <span class="stat-label">Satisfaction Guarantee</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat">
+    <span class="stat-number">4</span>
+    <span class="stat-label">Core Services</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat">
+    <span class="stat-number">AU</span>
+    <span class="stat-label">Based in Brisbane</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div class="section-wrapper" id="services">
+  <div class="services">
+    <div class="services-header">
+      <span class="section-eyebrow">What We Do</span>
+      <h2 class="section-title">Content that works<br>as hard as <em>you do</em></h2>
+      <p class="section-sub">Every piece tailored to your brand voice, your audience, and your goals.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-number">01</div>
+        <h3 class="service-title">Blog Posts & Articles</h3>
+        <p class="service-desc">Long-form, SEO-optimised content that positions your business as an authority and drives organic traffic to your website.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-number">02</div>
+        <h3 class="service-title">Social Media Captions</h3>
+        <p class="service-desc">Engaging, platform-specific captions for Instagram, Facebook and LinkedIn that connect with your audience and grow your following.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-number">03</div>
+        <h3 class="service-title">Email Newsletters</h3>
+        <p class="service-desc">Professional email campaigns that nurture your audience, build loyalty and convert readers into paying customers.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-number">04</div>
+        <h3 class="service-title">Website Copy</h3>
+        <p class="service-desc">Compelling website and landing page copy that clearly communicates your value and turns visitors into clients.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-number">05</div>
+        <h3 class="service-title">Product Descriptions</h3>
+        <p class="service-desc">Persuasive, benefit-focused product copy that highlights value and drives purchasing decisions for e-commerce businesses.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-number">06</div>
+        <h3 class="service-title">Content Strategy</h3>
+        <p class="service-desc">A tailored content roadmap aligned to your business goals — so every piece of content has purpose, direction and impact.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PACKAGES -->
+<div class="section-wrapper dark" id="packages">
+  <div class="packages-inner">
+    <div class="packages-header">
+      <span class="section-eyebrow">Pricing</span>
+      <h2 class="section-title" style="color:var(--white)">Transparent pricing.<br><em>No surprises.</em></h2>
+    </div>
+    <div class="packages-grid">
+      <div class="package-card">
+        <p class="package-name">Starter</p>
+        <div class="package-price"><span>$</span>45</div>
+        <p class="package-desc">Perfect for businesses getting started with professional content.</p>
+        <div class="package-divider"></div>
+        <ul class="package-features">
+          <li>5 social media captions</li>
+          <li>Platform of your choice</li>
+          <li>Tailored brand voice</li>
+          <li>Delivered in 24 hours</li>
+          <li>2 revisions</li>
+        </ul>
+        <a href="#contact" class="btn-package">Get Started</a>
+      </div>
+      <div class="package-card featured">
+        <div class="featured-badge">Most Popular</div>
+        <p class="package-name">Professional</p>
+        <div class="package-price"><span>$</span>95</div>
+        <p class="package-desc">Our most popular package for businesses serious about content.</p>
+        <div class="package-divider"></div>
+        <ul class="package-features">
+          <li>1 blog post up to 1200 words</li>
+          <li>Full SEO optimisation</li>
+          <li>Meta description included</li>
+          <li>Tailored brand voice</li>
+          <li>Delivered in 48 hours</li>
+          <li>3 revisions</li>
+        </ul>
+        <a href="#contact" class="btn-package">Get Started</a>
+      </div>
+      <div class="package-card">
+        <p class="package-name">Complete</p>
+        <div class="package-price"><span>$</span>175</div>
+        <p class="package-desc">The full content package for maximum online presence.</p>
+        <div class="package-divider"></div>
+        <ul class="package-features">
+          <li>2 blog posts up to 1200 words</li>
+          <li>10 social media captions</li>
+          <li>2 email newsletters</li>
+          <li>Full SEO optimisation</li>
+          <li>Content strategy included</li>
+          <li>Delivered in 72 hours</li>
+          <li>Unlimited revisions</li>
+        </ul>
+        <a href="#contact" class="btn-package">Get Started</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<div class="section-wrapper cream" id="process">
+  <div class="process-inner">
+    <div class="process-header">
+      <span class="section-eyebrow">How It Works</span>
+      <h2 class="section-title">Simple. Streamlined.<br><em>Effective.</em></h2>
+    </div>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-number"><span>1</span></div>
+        <h4 class="step-title">Tell Us About Your Business</h4>
+        <p class="step-desc">Share your goals, audience and brand voice with us.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number"><span>2</span></div>
+        <h4 class="step-title">We Research Your Industry</h4>
+        <p class="step-desc">Deep research into your niche, competitors and audience.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number"><span>3</span></div>
+        <h4 class="step-title">We Craft Your Content</h4>
+        <p class="step-desc">Professional content written specifically for your brand.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number"><span>4</span></div>
+        <h4 class="step-title">We Deliver & Refine</h4>
+        <p class="step-desc">Clean Google Doc delivery with revisions until you're happy.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number"><span>5</span></div>
+        <h4 class="step-title">You Publish & Grow</h4>
+        <p class="step-desc">Copy, paste and watch your online presence grow.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="section-wrapper" id="about">
+  <div class="about">
+    <div class="about-visual">
+      <div class="about-box">
+        <p class="about-quote">"Every business deserves content that truly represents them — professional, purposeful and powerful."</p>
+        <span class="about-quote-author">Roland Jack & Co. · Brisbane, Australia</span>
+      </div>
+    </div>
+    <div class="about-text">
+      <span class="section-eyebrow">About Us</span>
+      <h2 class="section-title">A Brisbane agency built for <em>modern business</em></h2>
+      <p>Roland Jack & Co. was founded on one simple belief — every business, regardless of size, deserves content that connects, converts and grows.</p>
+      <p>We work with trades, real estate agencies, health and wellness brands, retailers and service businesses across Australia — delivering fast, professional content that sounds exactly like them.</p>
+      <ul class="about-list">
+        <li>Brisbane-based, Australia-wide service</li>
+        <li>Tailored to your unique brand voice</li>
+        <li>Fast turnaround — 24 to 72 hours</li>
+        <li>100% satisfaction guarantee</li>
+        <li>No lock-in contracts</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="section-wrapper dark">
+  <div class="cta-inner">
+    <h2 class="cta-title">Ready to grow your business <em>online?</em></h2>
+    <p class="cta-sub">Join businesses across Australia who trust Roland Jack & Co. to handle their content.</p>
+    <a href="#contact" class="btn-primary">Start Today</a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="section-wrapper cream" id="contact">
+  <div class="contact">
+    <div class="contact-info">
+      <span class="section-eyebrow">Contact</span>
+      <h2 class="section-title">Let's get <em>started</em></h2>
+      <p class="section-sub">Tell us about your business and we'll get back to you within 24 hours.</p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <span class="contact-item-label">Location</span>
+          <span class="contact-item-value">Brisbane, Queensland, Australia</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">Email</span>
+          <span class="contact-item-value">hello@rolandjackco.com</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">Fiverr</span>
+          <span class="contact-item-value">fiverr.com/rolandjackandco</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">Response Time</span>
+          <span class="contact-item-value">Within 24 hours</span>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="John">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Smith">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="john@yourbusiness.com.au">
+      </div>
+      <div class="form-group">
+        <label>Business Name</label>
+        <input type="text" placeholder="Your Business Pty Ltd">
+      </div>
+      <div class="form-group">
+        <label>Service Interested In</label>
+        <select>
+          <option value="">Select a service...</option>
+          <option>Starter Pack — $45</option>
+          <option>Professional Pack — $95</option>
+          <option>Complete Pack — $175</option>
+          <option>Custom Package</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tell Us About Your Business</label>
+        <textarea placeholder="What do you do, who are your customers, what content do you need..."></textarea>
+      </div>
+      <button class="form-submit">Send Enquiry</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Roland Jack <span>&</span> Co.</div>
+    <div class="footer-tagline">Smart Content. Real Results.</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2024 Roland Jack & Co. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
